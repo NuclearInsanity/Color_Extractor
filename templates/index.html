@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A|E CODE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+
+</head>
+<body>
+<div class="container-fluid">
+<nav>
+  <ul>
+    <li><strong>AE | Code</strong></li>
+  </ul>
+
+</nav>
+    </div>
+
+<section>
+<div class="container">
+<h1>Welcome to the color extractor! 🌈</h1>
+    <p>Upload a file and then submit. We (my program) will process it, extract the dominant colors, and spit out a pretty graph to show you the data.</p>
+</div>
+<div class="container">
+    <form method="post" enctype="multipart/form-data" data-tooltip="Upload a file to get started!" data-placement="bottom" >
+      {{ form.csrf_token }}
+     {{ form.hidden_tag() }}
+      {{ form.photo.label }}
+      {{ form.photo }}
+
+      {% if form.photo.errors %}
+      <ul class="errors">
+                {% for error in form.photo.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+      {% endif %}
+
+      {{ form.submit }}
+  </form>
+
+    {% if file_url %}
+<br>
+<img src="/uploads/plot.png">
+{% endif %}
+  </div>
+
+</body>
+</html>
